@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:submission_flutter/cars_list.dart';
 
 
@@ -8,7 +6,10 @@ import 'package:submission_flutter/cars_list.dart';
 class DetailScreen extends StatelessWidget {
   final CarsDetail brabus;
 
-  DetailScreen({required this.brabus});
+  const DetailScreen({
+    Key? key,
+    required this.brabus
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,10 @@ class DetailScreen extends StatelessWidget {
 class DetailMobilePage extends StatefulWidget{
   final CarsDetail brabus;
 
-  DetailMobilePage({required this.brabus});
+  const DetailMobilePage({
+    Key? key,
+    required this.brabus
+  }) : super(key: key);
 
   @override
   _DetailMobilePage createState() => _DetailMobilePage();
@@ -53,8 +57,11 @@ class _DetailMobilePage extends State<DetailMobilePage> {
                   widget.brabus.imageAssets,
                   fit: BoxFit.fitWidth,
                 ),
-                title: Text(widget.brabus.name, style: TextStyle(fontFamily: 'Rockwell')),
-                titlePadding: EdgeInsets.only(left: 16, bottom: 16),
+                title: Text(
+                    widget.brabus.name,
+                    style: const TextStyle(
+                        fontFamily: 'Rockwell')),
+                titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
               ),
             )
           ];
@@ -67,16 +74,18 @@ class _DetailMobilePage extends State<DetailMobilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Text(widget.brabus.subName, style: TextStyle(fontSize: 20)),
-                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                        widget.brabus.subName,
+                        style: const TextStyle(fontSize: 20)),
+                    padding: const EdgeInsets.only(bottom: 10),
                   ),
-                  Container(
+                  SizedBox(
                     height: 200,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: widget.brabus.imageExterior.map((asset) {
                         return Padding(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             child: ClipRRect(
                                 child: Image.asset(asset),
                                 borderRadius: BorderRadius.circular(10))
@@ -85,53 +94,53 @@ class _DetailMobilePage extends State<DetailMobilePage> {
                     ),
                   ),
                   Table(
-                    columnWidths: {1: FractionColumnWidth(0.7)},
+                    columnWidths: const {1: FractionColumnWidth(0.7)},
                     children: [
                       TableRow(
                           children: [
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(top: 10, bottom: 10),
                               child: Text('Mesin'),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 10),
+                              padding: const EdgeInsets.only(top: 10, bottom: 10),
                               child: Text(widget.brabus.engine),
                             )
                           ]
                       ),
                       TableRow(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             child: Text('Tenaga'),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Text(widget.brabus.power),
                           ),
                         ],
                       ),
                       TableRow(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 10, bottom: 10),
                             child: Text('Torsi'),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: Text(widget.brabus.torsi),
                           )
                         ],
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     height: 200,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: widget.brabus.imageInterior.map((asset) {
                         return Padding(
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             child: ClipRRect(
                                 child: Image.asset(asset),
                                 borderRadius: BorderRadius.circular(10))
@@ -140,25 +149,33 @@ class _DetailMobilePage extends State<DetailMobilePage> {
                     ),
                   ),
                   Table(
-                      columnWidths: {1: FractionColumnWidth(0.7)},
+                      columnWidths: const {1: FractionColumnWidth(0.7)},
                       children: [
                         TableRow(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(top: 20, bottom: 20),
+                                padding: const EdgeInsets.only(top: 20, bottom: 20),
                                 child: Text('Harga ($_priceSymbol)'),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('${widget.brabus.price}',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                  Text(
+                                      '${widget.brabus.price}',
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
                                   Container(
-                                    margin: EdgeInsets.only(top: 10, left: 10),
+                                    margin: const EdgeInsets.only(top: 10, left: 10),
                                     child: DropdownButton<String>(
                                       items: <String>['IDR', 'Euro'].map((String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                          child: Text(
+                                              value,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20)),
                                         );
                                       }).toList(),
                                       value: _currency,
@@ -184,13 +201,19 @@ class _DetailMobilePage extends State<DetailMobilePage> {
                   ),
 
                   Container(
-                    padding: EdgeInsets.all(20),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black)
                     ),
                     child: InkWell(
-                      child: Text('Pesan Sekarang', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                      child: const Text(
+                          'Pesan Sekarang',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -216,7 +239,10 @@ class _DetailMobilePage extends State<DetailMobilePage> {
 class DetailWebPage extends StatefulWidget {
   final CarsDetail brabus;
 
-  DetailWebPage({required this.brabus});
+  const DetailWebPage({
+    Key? key,
+    required this.brabus
+  }) : super(key: key);
 
   @override
   _DetailWebPageState createState() => _DetailWebPageState();
@@ -232,19 +258,18 @@ class _DetailWebPageState extends State<DetailWebPage> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      // appBar: kIsWeb ? null : AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 64,
         ),
         child: Center(
-          child: Container(
+          child: SizedBox(
             width: screenWidth <= 1200 ? 800 : 1200,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                const Text(
                   'BRABUS',
                   style: TextStyle(
                     fontFamily: 'Rockwell',
@@ -252,7 +277,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -263,17 +288,17 @@ class _DetailWebPageState extends State<DetailWebPage> {
                             child: Image.asset(widget.brabus.imageAssets),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Scrollbar(
                             isAlwaysShown: true,
-                            child: Container(
+                            child: SizedBox(
                               height: 150,
                               child: ListView(
                                 controller: _scrollController,
                                 scrollDirection: Axis.horizontal,
                                 children: widget.brabus.imageExterior.map((asset) {
                                   return Padding(
-                                    padding: EdgeInsets.all(4),
+                                    padding: const EdgeInsets.all(4),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.asset(asset),
@@ -284,14 +309,14 @@ class _DetailWebPageState extends State<DetailWebPage> {
                             ),
                           ),
                           Scrollbar(
-                            child: Container(
+                            child: SizedBox(
                               height: 150,
                               child: ListView(
                                 controller: _scrollController,
                                 scrollDirection: Axis.horizontal,
                                 children: widget.brabus.imageInterior.map((asset) {
                                   return Padding(
-                                      padding: EdgeInsets.all(4),
+                                      padding: const EdgeInsets.all(4),
                                       child: ClipRRect(
                                           child: Image.asset(asset),
                                           borderRadius: BorderRadius.circular(10))
@@ -303,7 +328,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 32),
+                    const SizedBox(width: 32),
                     Expanded(
                       child: Card(
                         child: Container(
@@ -325,40 +350,40 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                 ),
                               ),
                               Table(
-                                columnWidths: {1: FractionColumnWidth(0.7)},
+                                columnWidths: const {1: FractionColumnWidth(0.7)},
                                 children: [
                                   TableRow(
                                       children: [
-                                        Padding(
+                                        const Padding(
                                           padding: EdgeInsets.only(top: 10, bottom: 10),
                                           child: Text('Mesin'),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 10, bottom: 10),
+                                          padding: const EdgeInsets.only(top: 10, bottom: 10),
                                           child: Text(widget.brabus.engine),
                                         )
                                       ]
                                   ),
                                   TableRow(
                                     children: [
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsets.only(top: 10, bottom: 10),
                                         child: Text('Tenaga'),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                                        padding: const EdgeInsets.only(top: 10, bottom: 10),
                                         child: Text(widget.brabus.power),
                                       ),
                                     ],
                                   ),
                                   TableRow(
                                     children: [
-                                      Padding(
+                                      const Padding(
                                         padding: EdgeInsets.only(top: 10, bottom: 10),
                                         child: Text('Torsi'),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                                        padding: const EdgeInsets.only(top: 10, bottom: 10),
                                         child: Text(widget.brabus.torsi),
                                       )
                                     ],
@@ -366,25 +391,35 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                 ],
                               ),
                               Table(
-                                  columnWidths: {1: FractionColumnWidth(0.7)},
+                                  columnWidths: const {1: FractionColumnWidth(0.7)},
                                   children: [
                                     TableRow(
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(top: 20, bottom: 20),
+                                            padding: const EdgeInsets.only(top: 20, bottom: 20),
                                             child: Text('Harga ($_priceSymbol)'),
                                           ),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Text('${widget.brabus.price}',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                              Text(
+                                                  '${widget.brabus.price}',
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight: FontWeight.bold)),
                                               Container(
-                                                margin: EdgeInsets.only(top: 10, left: 10),
+                                                margin: const EdgeInsets.only(top: 10, left: 10),
                                                 child: DropdownButton<String>(
                                                   items: <String>['IDR', 'Euro'].map((String value) {
                                                     return DropdownMenuItem<String>(
                                                       value: value,
-                                                      child: Text(value,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                                      child: Text(
+                                                          value,
+                                                          style: const TextStyle(
+                                                              fontWeight: FontWeight.bold,
+                                                              fontSize: 20
+                                                          )
+                                                      ),
                                                     );
                                                   }).toList(),
                                                   value: _currency,
@@ -410,13 +445,19 @@ class _DetailWebPageState extends State<DetailWebPage> {
                               ),
 
                               Container(
-                                padding: EdgeInsets.all(20),
-                                margin: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(20),
+                                margin: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                     border: Border.all(color: Colors.black)
                                 ),
                                 child: InkWell(
-                                  child: Text('Pesan Sekarang', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                                  child: const Text(
+                                      'Pesan Sekarang',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      )
+                                  ),
                                   onTap: () {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(
