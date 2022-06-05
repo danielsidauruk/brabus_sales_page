@@ -336,18 +336,14 @@ class _DetailWebPageState extends State<DetailWebPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
-                              Container(
-                                child: Text(
-                                  widget.brabus.name,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 30.0,),
-                                ),
+                              Text(
+                                widget.brabus.name,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 30.0,),
                               ),
-                              Container(
-                                child: Text(
-                                  widget.brabus.subName,
-                                  textAlign: TextAlign.center,
-                                ),
+                              Text(
+                                widget.brabus.subName,
+                                textAlign: TextAlign.center,
                               ),
                               Table(
                                 columnWidths: const {1: FractionColumnWidth(0.7)},

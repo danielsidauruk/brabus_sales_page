@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:submission_flutter/details_screen.dart';
 import 'package:submission_flutter/cars_list.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,9 +14,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar(
-            leading: Icon(Icons.menu, color: Colors.black,),
+            leading: const Icon(Icons.menu, color: Colors.black,),
             backgroundColor: Colors.white,
-            title: Text(
+            title: const Text(
                 'BRABUS',
                 style: TextStyle(
                     fontFamily: 'Rockwell',
@@ -22,13 +24,15 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 25)),
         ),
-        body: FirstScreen(),
+        body: const FirstScreen(),
       )
     );
   }
 }
 
 class FirstScreen extends StatelessWidget {
+  const FirstScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -37,11 +41,11 @@ class FirstScreen extends StatelessWidget {
           body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth <= 600) {
-                return CarsList();
+                return const CarsList();
               } else if (constraints.maxWidth <= 1000) {
-                return CarsGrid(gridCount: 2);
+                return const CarsGrid(gridCount: 2);
               } else {
-                return CarsGrid(gridCount: 3);
+                return const CarsGrid(gridCount: 3);
               }
             },
           ),
@@ -54,7 +58,7 @@ class FirstScreen extends StatelessWidget {
 class CarsGrid extends StatelessWidget {
   final int gridCount;
 
-  CarsGrid({required this.gridCount});
+  const CarsGrid({Key? key, required this.gridCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,29 +87,32 @@ class CarsGrid extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Text(
                             brabus.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Text(
                             brabus.subName,
                           ),
                         ),
                         Padding(
-                          child: Text('Price : €${brabus.price.toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold),),
-                          padding: EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
+                          child: Text(
+                            'Price : €${brabus.price.toStringAsFixed(2)}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          padding: const EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 10),
                         ),
                       ],
                     ),
@@ -121,6 +128,8 @@ class CarsGrid extends StatelessWidget {
 }
 
 class CarsList extends StatelessWidget {
+  const CarsList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,16 +153,25 @@ class CarsList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                child: Text(brabus.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                                padding: EdgeInsets.only(top: 10, left: 10),
+                                child: Text(
+                                    brabus.name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20
+                                    )
+                                ),
+                                padding: const EdgeInsets.only(top: 10, left: 10),
                               ),
                               Padding(
                                 child: Text(brabus.subName),
-                                padding: EdgeInsets.only(top: 10, left: 10),
+                                padding: const EdgeInsets.only(top: 10, left: 10),
                               ),
                               Padding(
-                                child: Text('Price : €${brabus.price.toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold),),
-                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  'Price : €${brabus.price.toStringAsFixed(2)}',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                padding: const EdgeInsets.all(10),
                               ),
                             ],
                           ),
